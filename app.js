@@ -7,6 +7,7 @@ dotenv.config();
 
 const userRoutes = require('./api/routes/user');
 
+const options = require('./api/middleware/options');
 const e404 = require('./api/middleware/e404');
 const e500 = require('./api/middleware/e500');
 
@@ -20,6 +21,9 @@ mongoose.connect(process.env.MONGO_ATLAS_CS, {
     app.use(bodyParser.json());
 
     app.use("/user", userRoutes);
+
+    //OPTIONS route
+    app.use(options);
 
     // 404 Route
     app.use(e404);
