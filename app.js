@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const productRoutes = require("./api/routes/products");
 const userRoutes = require('./api/routes/user');
 
 const options = require('./api/middleware/options');
@@ -20,6 +21,8 @@ mongoose.connect(process.env.MONGO_ATLAS_CS, {
 
     app.use(bodyParser.json());
 
+    // Routes
+    app.use("/products", productRoutes);
     app.use("/user", userRoutes);
 
     //OPTIONS route
