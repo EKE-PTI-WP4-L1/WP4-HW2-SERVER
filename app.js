@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -18,6 +19,8 @@ mongoose.connect(process.env.MONGO_ATLAS_CS, {
     useCreateIndex: true,
 }).then(() => {
     console.log('Connected to Mongo Atlas');
+
+    app.use(cors());
 
     app.use(bodyParser.json());
 
